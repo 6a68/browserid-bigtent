@@ -18,6 +18,13 @@ if (!! localStorage.width && !! localStorage.height) {
   var h = parseInt(localStorage.getItem('height'), 10);
   if (! isNaN(w) && w > 100 && ! isNaN(h) && h > 100) {
     window.resizeTo(w, h);
+    // XXX keep this resize code in sync with the snippet in static/js/error.js
+    setTimeout(function() {
+      // resizeTo() will make it too short on IE8: #58, mozilla/browserid#3476.
+      // so, measure how short it is, add that to 375, and resize again.
+      var dy = h - (window.outerHeight || document.documentElement.offsetHeight);
+      if (dy > 0) { window.resizeTo(w , h + dy); }
+    }, 0);
     if (localStorage.removeItem) {
       localStorage.removeItem('width');
       localStorage.removeItem('height');

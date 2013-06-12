@@ -1,5 +1,12 @@
-    // From mozilla/browserid resources/static/pages/page_helpers.js
+    // XXX keep this resize code in sync with the snippet in server/views/signin.ejs
     window.resizeTo(700, 375);
+    setTimeout(function() {
+      // resizeTo() will make it too short on IE8: #58, mozilla/browserid#3476.
+      // so, measure how short it is, add that to 375, and resize again.
+      var dy = 375 - (window.outerHeight || document.documentElement.offsetHeight);
+      if (dy > 0) { window.resizeTo(700, 375 + dy); }
+    }, 0);
+
     $('button.cancel').click(function(e) {
       e.preventDefault();
         navigator.id.raiseAuthenticationFailure(
