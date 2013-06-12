@@ -10,7 +10,8 @@ _ = require('underscore');
 
 exports.sources = {
   js: {
-    '/js/error.min.js': ['/js/error.js']
+    '/js/error.min.js': ['/js/error.js'],
+    '/js/resize.min.js': ['/js/resize.js']
   },
   css: {
     '/css/style.min.css': ['/css/style.css']
