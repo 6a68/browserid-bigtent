@@ -4,6 +4,6 @@ if (!! localStorage.width && !! localStorage.height) {
   if (! isNaN(w) && w > 100 && ! isNaN(h) && h > 100) {
     var dw = w - (window.innerWidth || document.documentElement.offsetWidth);
     var dh = h - (window.innerHeight || document.documentElement.offsetHeight);
-    window.resizeBy(dw, dh);
+    if (dw > 0 && dh > 0) { window.resizeBy(dw, dh); }
   }
 }
